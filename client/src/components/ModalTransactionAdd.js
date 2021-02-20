@@ -31,7 +31,6 @@ export default function ModalTransactionAdd({ onSaveAdd, onCloseAdd }) {
   useEffect(() => {
     document.addEventListener('keydown', handleKeyDown);
 
-
     // Eliminando evento
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
@@ -70,11 +69,13 @@ export default function ModalTransactionAdd({ onSaveAdd, onCloseAdd }) {
       category,
       year: `${date.substring(0, 4)}`,
       month: `${date.substring(5, 7)}`,
-      day: `${date.substring(9, 10)}`,
+      day: `${date.substring(8, 10)}`,
       yearMonth: `${date.substring(0, 7)}`,
       yearMonthDay: date,
       type
     };
+
+    console.log(formData);
 
     onSaveAdd(formData);
   };
@@ -92,7 +93,6 @@ export default function ModalTransactionAdd({ onSaveAdd, onCloseAdd }) {
    */
   const handleTypeModify = (event) => {
     const newType = event.target.value;
-    console.log(event);
     setType(newType);
   };
 
@@ -134,11 +134,16 @@ export default function ModalTransactionAdd({ onSaveAdd, onCloseAdd }) {
 
         <form onSubmit={handleFormSubmit}>
           <div className="input-field">
-            <input className="with-gap" id="radioTypeExpense" name="radioType" value='-' type="radio" onChange={handleTypeModify} />
-
-            <span>Despesa</span>
-            <input className="with-gap" id="radioTypeRevenue" name="radioType" value='+' type="radio" checked onChange={handleTypeModify} />
-            <span>Receita</span>
+            <p>
+              <label>
+                <input className="with-gap" id="radioTypeExpense" name="radioType" value='-' type="radio" onChange={handleTypeModify} />
+                <span>Despesa</span>
+              </label>
+              <label>
+                <input className="with-gap" id="radioTypeRevenue" name="radioType" value='+' type="radio" defaultChecked onChange={handleTypeModify} />
+                <span>Receita</span>
+              </label>
+            </p>
           </div>
           <div className="input-field">
             <input id="inputDescription" type="text" value={description} onChange={handleDescriptionChange} />

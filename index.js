@@ -38,7 +38,7 @@ app.use('/api/transaction', routes);
 /**
  * Conexão ao Banco de Dados
  */
-const { DB_CONNECTION } = process.env;
+const DB_CONNECTION = "mongodb+srv://test:123@cluster0.dydqv.mongodb.net/DesafioFinalBootcampFullStack?retryWrites=true&w=majority";
 
 console.log('Iniciando conexão ao MongoDB...');
 mongoose.connect(
